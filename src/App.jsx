@@ -1,14 +1,8 @@
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      
-          <h1>Get started</h1>
-         
-
-    </>
+    <div className="bg-red-500 text-white text-3xl font-bold p-10">
+   hello eva
+    </div>
   )
 }
 
