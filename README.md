@@ -8,3 +8,19 @@ add NavBar component to app.jsx file
 create a sperate file Navbar.jsx for handling navbar
 install react router dom 
 
+
+
+
+
+
+
+
+
+
+
+BODY
+ navbar
+ route=/ =>feed
+ route=/login =>login
+ route=/connections => dispaly connections
+route=/profile => display profile 
