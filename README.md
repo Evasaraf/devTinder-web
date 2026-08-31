@@ -6,3 +6,5 @@ install tailwind css
 install daisyUI 
 add NavBar component to app.jsx file 
 create a sperate file Navbar.jsx for handling navbar
+install react router dom 
+
