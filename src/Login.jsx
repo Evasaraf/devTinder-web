@@ -1,9 +1,20 @@
 import Footer from "./Footer";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("dhoni@gmail.com");
+  const [password, setPassword] = useState("Dhoni@21");
+
+  const handleLogin = async () => {
+    // Handle login logic here
+    try{
+   const res = await axios.post("http://localhost:7777/login", { emailId, password });
+    }
+    catch(err){
+        console.error(err);
+     }
+  }
 
   return (
     <div>
@@ -39,7 +50,9 @@ const Login = () => {
               </label>
             </div>
             <div className="card-actions justify-center">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
             </div>
           </div>
         </div>
