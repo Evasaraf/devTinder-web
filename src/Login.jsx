@@ -9,13 +9,13 @@ const Login = () => {
   const handleLogin = async () => {
     // Handle login logic here
     try{
-   const res = await axios.post("http://localhost:7777/login", { emailId, password });
+   const res = await axios.post("http://localhost:7777/login", { emailId, password }, { withCredentials: true } );
+   console.log(res.data);
     }
     catch(err){
         console.error(err);
      }
   }
-
   return (
     <div>
       <h1>Login Page</h1>
