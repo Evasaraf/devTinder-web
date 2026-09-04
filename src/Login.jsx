@@ -1,16 +1,20 @@
 import Footer from "./Footer";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "./utils/userslice";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("dhoni@gmail.com");
   const [password, setPassword] = useState("Dhoni@21");
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     // Handle login logic here
     try{
    const res = await axios.post("http://localhost:7777/login", { emailId, password }, { withCredentials: true } );
   console.log(res.data);
+  //dispatch(addUser(res.data));
    const user = await axios.get(
     "http://localhost:7777/profile/view",
     { withCredentials: true }
