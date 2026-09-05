@@ -14,12 +14,13 @@ const Login = () => {
     try{
    const res = await axios.post("http://localhost:7777/login", { emailId, password }, { withCredentials: true } );
   console.log(res.data);
-  //dispatch(addUser(res.data));
+//  dispatch(addUser(res.data));
    const user = await axios.get(
     "http://localhost:7777/profile/view",
     { withCredentials: true }
 );
   console.log(user.data);
+  dispatch(addUser(user.data));
     }
     catch(err){
         console.error(err);
