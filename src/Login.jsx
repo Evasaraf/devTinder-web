@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userslice";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "./utils/constants";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("dhoni@gmail.com");
@@ -14,11 +15,11 @@ const Login = () => {
   const handleLogin = async () => {
     // Handle login logic here
     try{
-   const res = await axios.post("http://localhost:7777/login", { emailId, password }, { withCredentials: true } );
+   const res = await axios.post( BASE_URL + "/login", { emailId, password }, { withCredentials: true } );
 //  console.log(res.data);
 //  dispatch(addUser(res.data));
    const user = await axios.get(
-    "http://localhost:7777/profile/view",
+    BASE_URL + "/profile/view",
     { withCredentials: true }
 );
  // console.log(user.data);
