@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
+  const handleLogout = async() => {
+    try{
+     const res = await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+    }
+    catch(err){
+    // error logic maybe redirected to error page
+    }
+  }
 
   console.log("NAVBAR USER:", user);
 
