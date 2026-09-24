@@ -6,14 +6,16 @@ import { addUser } from "./utils/userslice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "./utils/constants";
 
+
 const Login = () => {
   const [emailId, setEmailId] = useState("dhoni@gmail.com");
   const [password, setPassword] = useState("Dhoni@21");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // Handle login logic here
+    setError("");
     try{
    const res = await axios.post( BASE_URL + "/login", { emailId, password }, { withCredentials: true } );
 //  console.log(res.data);
@@ -27,7 +29,9 @@ const Login = () => {
      navigate("/");
     }
     catch(err){
-        console.error(err);
+      const status = err?.response?.status;
+      setError(status === 401 ? "Invalid credentials" : "Unable to log in. Please try again.");
+      console.error(err?.response?.data || err.message || "Something went wrong");
      }
   }
   return (
@@ -63,6 +67,7 @@ const Login = () => {
                 />
               </label>
             </div>
+            <p className="text-red-500">{error}</p>
             <div className="card-actions justify-center">
               <button className="btn btn-primary" onClick={handleLogin}>
                 Login

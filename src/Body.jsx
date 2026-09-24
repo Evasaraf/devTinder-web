@@ -20,7 +20,7 @@ const Body = () => {
       const user = await axios.get(BASE_URL + "/profile/view", { withCredentials: true });
       dispatch(addUser(user.data));
     } catch (error) {
-      if(error.status === 401){
+      if(error.response?.status === 401){
         Navigate("/login");
       }
       console.error("Error fetching user:", error);
