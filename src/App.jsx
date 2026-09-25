@@ -3,6 +3,7 @@ import Body from "./Body";
 import Login from "./Login";
 import Profile from "./Profile";
 import NavBar from "./NavBar";
+import Feed from "./Feed";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 
@@ -12,7 +13,9 @@ function App() {
       <BrowserRouter basename="/">
         <NavBar />
         <Routes>
-          <Route path="/" element={<Body />} />
+          <Route path="/" element={<Body />}>
+            <Route index element={<Feed />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
