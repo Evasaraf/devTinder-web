@@ -5,6 +5,7 @@ import { addFeed } from "./utils/feedSlice";
 import { BASE_URL } from "./utils/constants";
 import UserCard from "./utils/UserCard.jsx";
 
+
 const Feed = () => {
     const feed = useSelector((store) => store.feed);
     const dispatch = useDispatch();
@@ -26,9 +27,11 @@ useEffect(() => {
 }, []);
 
  return (
+    feed && (
  <div className="flex justify-center my-10">
-    <UserCard/>
+    <UserCard user = {feed[0]}/>
  </div>
  )
+)
 }
 export default Feed;
