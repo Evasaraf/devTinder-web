@@ -1,22 +1,25 @@
 const UserCard = ({user}) =>{
-    console.log(user);
   if (!user) return null;
 
+    const {firstname, lastname, emailId, photoUrl, age, gender} = user;
+    console.log(user);
+  
     return (
-        <div className="card bg-base-100 w-96 shadow-xl">
+        <div className="card bg-base-300 w-96 shadow-xl">
   <figure>
     <img
-      src={user.photoUrl}
-      alt={user.name}
+      src={photoUrl}
+      alt="photo"
     />
   </figure>
 
   <div className="card-body">
-    <h2 className="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Buy Now</button>
+    <h2 className="card-title">{firstname} {lastname}</h2>
+    <p>this is the default about of the user </p>
+    {age && gender && <p> {age + "," + gender}</p>}
+    <div className="card-actions justify-end my-4">
+      <button className="btn btn-primary">Ignore request </button>
+      <button className="btn btn-secondary">send request</button>
     </div>
   </div>
 </div>
