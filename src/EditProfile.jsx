@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Footer from "./Footer";
-const EditProfile = ()=>{
-      const [Firstname, setFirstname] = useState("");
-      const [Lastname, setLastname] = useState("");
-      const [photoUrl, setPhotoUrl] = useState("");
-      const[age, setAge] = useState();
-      const [gender, setGender] = useState();
-      const [skills, setskills] = useState();
 
-    return (
+const EditProfile = ({ user = {} }) => {
+  const [Firstname, setFirstname] = useState(user.Firstname || "");
+  const [Lastname, setLastname] = useState(user.Lastname || "");
+  const [photoUrl, setPhotoUrl] = useState(user.photoUrl || "");
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
+  const [skills, setSkills] = useState(user.skills || "");
+
+  return (
     <div>
       <h1>Edit profile</h1>
       <div className="flex justify-center my-10">
@@ -16,7 +17,6 @@ const EditProfile = ()=>{
           <div className="card-body">
             <h2 className="card-title justify-center">Edit Profile</h2>
             <div>
-
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text">Firstname </span>
@@ -94,14 +94,12 @@ const EditProfile = ()=>{
                   value={skills}
                   placeholder="Type skills"
                   className="input input-bordered w-full max-w-xs"
-                  onChange={(e) => setskills(e.target.value)}
+                  onChange={(e) => setSkills(e.target.value)}
                 />
               </label>
             </div>
             <div className="card-actions justify-center">
-              <button className="btn btn-primary" >
-                Save Profile
-              </button>
+              <button className="btn btn-primary">Save Profile</button>
             </div>
           </div>
         </div>
@@ -109,6 +107,7 @@ const EditProfile = ()=>{
       <Footer />
     </div>
   );
+};
 
-}
 export default EditProfile;
+
