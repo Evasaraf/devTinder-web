@@ -1,31 +1,53 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 import Footer from "./Footer";
 import UserCard from "./utils/UserCard";
+import { BASE_URL } from "./utils/constants";
+import { addUser } from "./utils/userslice";
 const EditProfile = ({ user }) => {
     const [firstname, setfirstname] = useState("");
     const [lastname, setlastname] = useState("");
-    const [photoUrl, setphotoUrl] = useState("");
+    const [photoUrl, setPhotoUrl] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [skills, setSkills] = useState("");
+    const [error, setError] = useState(null);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (user) {
             setfirstname(user.firstname || "");
             setlastname(user.lastname || "");
-            setphotoUrl(user.photoUrl || "");
+            setPhotoUrl(user.photoUrl || "");
             setAge(user.age || "");
             setGender(user.gender || "");
             setSkills(user.skills?.join(", ") || "");
+            setError(null); // Reset error state when user data is available
+            
         }
     }, [user]);
+
+    const saveProfile = async () => {
+        setError(null); // Reset error state before making the request
+     try{
+        const res = await axios.patch(BASE_URL + "/profile/edit",
+             { firstname, lastname, photoUrl, age, gender, skills: skills.split(",").map(skill => skill.trim()) },
+             { withCredentials: true }
+        );
+       dispatch(addUser(res?.data?.data));
+     }
+     catch(err){
+                 setError(err.response.data);
+     }
+    }
 
     return (
         <div className = "flex justify-center my-10">
         <div>
             <h1>Edit profile</h1>
 
-            <div className="flex justify-center mx-10">
+            <div className="flex justify-center my-10 mx-10">
                 <div className="card bg-base-300 w-96 shadow-xl">
                     <div className="card-body">
 
@@ -127,7 +149,7 @@ const EditProfile = ({ user }) => {
                         </label>
 
                         <div className="card-actions justify-center">
-                            <button className="btn btn-primary">
+                            <button className="btn btn-primary" onClick={saveProfile}>
                                 Save Profile
                             </button>
                         </div>
