@@ -21,11 +21,11 @@ const EditProfile = ({ user }) => {
     }, [user]);
 
     return (
-        <>
+        <div className = "flex justify-center my-10">
         <div>
             <h1>Edit profile</h1>
 
-            <div className="flex justify-center my-10">
+            <div className="flex justify-center mx-10">
                 <div className="card bg-base-300 w-96 shadow-xl">
                     <div className="card-body">
 
@@ -139,7 +139,7 @@ const EditProfile = ({ user }) => {
             <Footer />
         </div>
         <UserCard  user= {{ firstname, lastname, photoUrl, age, gender, skills}}/>
-        </>
+        </div>
     );
 };
 
