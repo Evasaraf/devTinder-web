@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import Footer from "./Footer";
 
 const EditProfile = ({ user }) => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [photoUrl, setPhotoUrl] = useState("");
+    const [firstname, setfirstname] = useState("");
+    const [lastname, setlastname] = useState("");
+    const [photoUrl, setphotoUrl] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [skills, setSkills] = useState("");
 
     useEffect(() => {
         if (user) {
-            setFirstName(user.firstName || "");
-            setLastName(user.lastName || "");
-            setPhotoUrl(user.photoUrl || "");
+            setfirstname(user.firstname || "");
+            setlastname(user.lastname || "");
+            setphotoUrl(user.photoUrl || "");
             setAge(user.age || "");
             setGender(user.gender || "");
             setSkills(user.skills?.join(", ") || "");
@@ -40,10 +40,10 @@ const EditProfile = ({ user }) => {
 
                             <input
                                 type="text"
-                                value={firstName}
+                                value={firstname}
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                onChange={(e) => setFirstName(e.target.value)}
+                                onChange={(e) => setfirstname(e.target.value)}
                             />
                         </label>
 
@@ -55,10 +55,10 @@ const EditProfile = ({ user }) => {
 
                             <input
                                 type="text"
-                                value={lastName}
+                                value={lastname}
                                 placeholder="Type here"
                                 className="input input-bordered w-full max-w-xs"
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(e) => setlastname(e.target.value)}
                             />
                         </label>
 
