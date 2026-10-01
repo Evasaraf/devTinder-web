@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
-
+import UserCard from "./utils/UserCard";
 const EditProfile = ({ user }) => {
     const [firstname, setfirstname] = useState("");
     const [lastname, setlastname] = useState("");
@@ -21,6 +21,7 @@ const EditProfile = ({ user }) => {
     }, [user]);
 
     return (
+        <>
         <div>
             <h1>Edit profile</h1>
 
@@ -137,6 +138,8 @@ const EditProfile = ({ user }) => {
 
             <Footer />
         </div>
+        <UserCard  user= {{ firstname, lastname, photoUrl, age, gender, skills}}/>
+        </>
     );
 };
 
