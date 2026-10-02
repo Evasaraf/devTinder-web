@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -56,6 +57,10 @@ const EditProfile = ({ user }) => {
 
             dispatch(addUser(res?.data?.data));
             setShowToast(true);
+
+            setTimeout(() => {
+                setShowToast(false);
+            }, 3000);
         } catch (err) {
             setError(err.response.data);
         }
@@ -262,6 +267,4 @@ const EditProfile = ({ user }) => {
 };
 
 export default EditProfile;
-
-
 
