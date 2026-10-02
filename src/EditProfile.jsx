@@ -12,6 +12,7 @@ const EditProfile = ({ user }) => {
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [skills, setSkills] = useState("");
+    const [about, setAbout] = useState("");
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
 
@@ -23,6 +24,7 @@ const EditProfile = ({ user }) => {
             setAge(user.age || "");
             setGender(user.gender || "");
             setSkills(user.skills?.join(", ") || "");
+            setAbout(user.about || "");
             setError(null); // Reset error state when user data is available
             
         }
@@ -32,7 +34,7 @@ const EditProfile = ({ user }) => {
         setError(null); // Reset error state before making the request
      try{
         const res = await axios.patch(BASE_URL + "/profile/edit",
-             { firstname, lastname, photoUrl, age, gender, skills: skills.split(",").map(skill => skill.trim()) },
+             { firstname, lastname, photoUrl, age, gender, skills: skills.split(",").map(skill => skill.trim()), about },
              { withCredentials: true }
         );
        dispatch(addUser(res?.data?.data));
@@ -147,6 +149,18 @@ const EditProfile = ({ user }) => {
                                 onChange={(e) => setSkills(e.target.value)}
                             />
                         </label>
+                        <label className="form-control w-full max-w-xs py-5">
+                            <div className="label">
+                                <span className="label-text">About</span>
+                            </div>
+
+                            <textarea
+                                value={about}
+                                placeholder="Type about"
+                                className="textarea textarea-bordered w-full max-w-xs"
+                                onChange={(e) => setAbout(e.target.value)}
+                            />
+                        </label>
 
                         <div className="card-actions justify-center">
                             <button className="btn btn-primary" onClick={saveProfile}>
@@ -160,7 +174,7 @@ const EditProfile = ({ user }) => {
 
             <Footer />
         </div>
-        <UserCard  user= {{ firstname, lastname, photoUrl, age, gender, skills}}/>
+        <UserCard  user= {{ firstname, lastname, photoUrl, age, gender, skills, about}}/>
         </div>
     );
 };

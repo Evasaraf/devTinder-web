@@ -15,8 +15,8 @@ const UserCard = ({user}) =>{
 
   <div className="card-body">
     <h2 className="card-title">{firstname} {lastname}</h2>
-    <p>this is the default about of the user </p>
     {age && gender && <p> {age + "," + gender}</p>}
+    <about className="text-sm text-gray-200">{user.about || "this is the default about of the user."}</about>
     <div className="card-actions justify-end my-4">
       <button className="btn btn-primary">Ignore request </button>
       <button className="btn btn-secondary">send request</button>
