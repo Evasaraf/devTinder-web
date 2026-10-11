@@ -37,7 +37,7 @@ return (
 
       return (
         <div className =  "m-4 p-4  bg-base-200" key={connection.id}>
-          <div><img alt="photo" className="w-20 h-20" src={photoUrl} /></div>
+          <div><img alt="photo" className="w-20 h-20 rounded-full" src={photoUrl} /></div>
            <div><h2> {firstname + " " + lastname}</h2></div>
           <p> {skills}</p>
         </div>
