@@ -13,6 +13,7 @@ const Requests = () => {
     try{
      const res = axios.post(BASE_URL + "/request/review/" + status + "/" + _id ,{},{ withCredentials: true });
      console.log("Request reviewed:", res.data.data);
+       dispatch(removeRequest(_id));
     }
     catch(err){
 
