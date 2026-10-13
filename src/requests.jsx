@@ -9,6 +9,16 @@ const Requests = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const reviewRequest = async(status, _id) =>{
+    try{
+     const res = axios.post(BASE_URL + "/request/review/" + status + "/" + _id ,{},{ withCredentials: true });
+     console.log("Request reviewed:", res.data.data);
+    }
+    catch(err){
+
+    }
+  }
+
   const fetchRequests = async () => {
     try {
       const res = await axios.get(
@@ -74,8 +84,12 @@ const Requests = () => {
               <p>{skills?.join(", ")}</p>
               <p>{about}</p>
               <div>
-               <button className="btn btn-primary m-2">Accept</button>
-               <button className="btn btn-secondary m-2">Decline</button>
+               <button className="btn btn-primary m-2" onClick={() => reviewRequest("accepted", request._id)}>
+                 Accept
+               </button>
+               <button className="btn btn-secondary m-2" onClick={() => reviewRequest("rejected", request._id)}>
+                 Reject
+               </button>
               </div>
             </div>
           </div>
