@@ -73,6 +73,10 @@ const Requests = () => {
               </h2>
               <p>{skills?.join(", ")}</p>
               <p>{about}</p>
+              <div>
+               <button className="btn btn-primary m-2">Accept</button>
+               <button className="btn btn-secondary m-2">Decline</button>
+              </div>
             </div>
           </div>
         );
