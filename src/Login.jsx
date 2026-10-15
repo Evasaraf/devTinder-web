@@ -103,6 +103,10 @@ const Login = () => {
               </button>
             </div>
           </div>
+          <p className="text-center pb-5">{ 
+            isLoginForm ? "Don't have an account?" : "Already have an account?"} 
+            <span className="text-blue-500 cursor-pointer" 
+            onClick={() => setisLoginForm(!isLoginForm)}>{isLoginForm ? "Sign Up" : "Login"}</span></p>
         </div>
       </div>
       <Footer />
