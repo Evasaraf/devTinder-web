@@ -9,16 +9,30 @@ const Requests = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const reviewRequest = async(status, _id) =>{
-    try{
-     const res = axios.post(BASE_URL + "/request/review/" + status + "/" + _id ,{},{ withCredentials: true });
-     console.log("Request reviewed:", res.data.data);
-       dispatch(removeRequest(_id));
-    }
-    catch(err){
+ 
 
-    }
+const reviewRequest = async (status, requestId) => {
+  try {
+    const res = await axios.post(
+      `${BASE_URL}/request/review/${status}/${requestId}`,
+      {},
+      { withCredentials: true }
+    );
+
+    console.log("Request reviewed:", res.data);
+
+    setRequests((prevRequests) =>
+      prevRequests.filter((request) => request._id !== requestId)
+    );
+  } catch (err) {
+    console.error(
+      "Review failed:",
+      err.response?.status,
+      err.response?.data || err.message
+    );
   }
+};
+
 
   const fetchRequests = async () => {
     try {
