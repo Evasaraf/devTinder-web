@@ -10,10 +10,13 @@ import { BASE_URL } from "./utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("dhoni@gmail.com");
   const [password, setPassword] = useState("Dhoni@21");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const[isLoginForm, setisLoginForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ 
   const handleLogin = async () => {
     setError("");
     try{
@@ -40,8 +43,34 @@ const Login = () => {
       <div className="flex justify-center my-10">
         <div className="card bg-base-300 w-96 shadow-xl">
           <div className="card-body">
-            <h2 className="card-title justify-center">Login</h2>
+            <h2 className="card-title justify-center">{isLoginForm ? "Login" : "Sign Up"}</h2>
             <div>
+              {!isLoginForm && 
+                <><label className="form-control w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text">First name</span>
+                  </div>
+                  <input
+                    type="text"
+                  value={firstname}
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={(e) => setfirstname(e.target.value)}
+                />
+              </label>
+              <label className="form-control w-full max-w-xs py-5">
+                <div className="label">
+                  <span className="label-text">Last name</span>
+                </div>
+                <input
+                  type="text"
+                  value={lastname}
+                  placeholder="Type here"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={(e) => setlastname(e.target.value)}
+                />
+              </label> </>}
+
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text">Email ID</span>
@@ -70,7 +99,7 @@ const Login = () => {
             <p className="text-red-500">{error}</p>
             <div className="card-actions justify-center">
               <button className="btn btn-primary" onClick={handleLogin}>
-                Login
+                {isLoginForm ? "Login" : "Sign Up"}
               </button>
             </div>
           </div>
