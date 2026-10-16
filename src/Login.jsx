@@ -37,6 +37,23 @@ const Login = () => {
       console.error(err?.response?.data || err.message || "Something went wrong");
      }
   }
+
+
+  const handleSignup = async () => {
+    try{
+      const res = await axios.post( BASE_URL + "/signup", { firstname, lastname, emailId, password }, 
+        { withCredentials: true } );
+      dispatch(addUser(user.data));
+     navigate("/profile");
+    }
+    catch(err){
+
+    }
+  }
+
+
+
+
   return (
     <div>
       <h1>Login Page</h1>
