@@ -38,18 +38,39 @@ const Login = () => {
      }
   }
 
-
   const handleSignup = async () => {
-    try{
-      const res = await axios.post( BASE_URL + "/signup", { firstname, lastname, emailId, password }, 
-        { withCredentials: true } );
-      dispatch(addUser(user.data));
-     navigate("/profile");
-    }
-    catch(err){
+  setError("");
 
-    }
+  try {
+    await axios.post(
+      BASE_URL + "/signup",
+      { firstname, lastname, emailId, password },
+      { withCredentials: true }
+    );
+
+    // Fetch the actual user profile
+    const profileRes = await axios.get(
+      BASE_URL + "/profile/view",
+      { withCredentials: true }
+    );
+
+    console.log("PROFILE AFTER SIGNUP:", profileRes.data);
+
+    dispatch(addUser(profileRes.data?.data ?? profileRes.data));
+
+    navigate("/profile");
+  } catch (err) {
+    console.error(
+      "SIGNUP/PROFILE ERROR:",
+      err.response?.data || err.message
+    );
+
+    setError(
+      err.response?.data?.message ||
+      "Unable to sign up or load your profile."
+    );
   }
+};
 
 
 
@@ -72,7 +93,7 @@ const Login = () => {
                   value={firstname}
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  onChange={(e) => setfirstname(e.target.value)}
+                  onChange={(e) => setFirstname(e.target.value)}
                 />
               </label>
               <label className="form-control w-full max-w-xs py-5">
@@ -84,7 +105,7 @@ const Login = () => {
                   value={lastname}
                   placeholder="Type here"
                   className="input input-bordered w-full max-w-xs"
-                  onChange={(e) => setlastname(e.target.value)}
+                  onChange={(e) => setLastname(e.target.value)}
                 />
               </label> </>}
 
@@ -115,7 +136,10 @@ const Login = () => {
             </div>
             <p className="text-red-500">{error}</p>
             <div className="card-actions justify-center">
-              <button className="btn btn-primary" onClick={handleLogin}>
+              <button
+                className="btn btn-primary"
+                onClick={isLoginForm ? handleLogin : handleSignup}
+              >
                 {isLoginForm ? "Login" : "Sign Up"}
               </button>
             </div>
