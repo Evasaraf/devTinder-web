@@ -1,7 +1,14 @@
-import {useParams} from "react-router-dom"
-const chat = () =>{
- const {targetUserId} = useParams;
- console.log(targetUserId);
- return <div> chat</div>
-};
-export default chat;
+import { useParams } from "react-router-dom";
+
+function Chat() {
+  const { targetUserId } = useParams();
+
+  return (
+    <div>
+      <h1>Chat Page</h1>
+      <p>Target User ID: {targetUserId}</p>
+    </div>
+  );
+}
+
+export default Chat;

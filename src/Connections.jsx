@@ -45,6 +45,7 @@ return (
           </div>
           <p> {skills}</p> 
           <p> {about}</p>
+          <button className = "btn btn-primary"> chat</button>
         </div>
       );
     })}
